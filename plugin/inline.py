@@ -12,16 +12,14 @@ def eval_current_line():
     pycode = vim.current.buffer[row-1]
     pre_str = ''
 
-
     # eval the python code
     try:
-       result = eval(pycode.strip(), globals())
+        result = eval(pycode.strip(), globals())
     except:
         result = '<python-eval-error>'
 
     # checking the global vim variables
     if vim.eval('s:nextline') == '1':
-        print 'nextline active'
         if row == len(vim.current.buffer):
             vim.current.buffer.append('')
         row += 1
@@ -31,4 +29,3 @@ def eval_current_line():
 
     # replacing the vim buffer
     vim.current.buffer[row-1] = pre_str + str(result)
-

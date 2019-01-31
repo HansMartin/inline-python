@@ -3,17 +3,23 @@
 " check python dependencies
 if !has('python')
     echo 'Vim needs to be compiled with +python support'
+    finish
 endif
 
+if exists('g:ip_loaded')
+    finish
+endif
+
+" for checking if the plugin is already loaded
+let g:ip_loaded = 1
 
 " local variables
 let s:plugin_root_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
-
 " global variables
 " append takes the prev. line content and only appends the python result
 " nextline writes the result to the next line of the buffer
-" div_str is used as a devider if the append option is used
+" div_str is used as a divider if the append option is used
 
 let s:append = get(g:, 'ip_append', 0)
 let s:nextline = get(g:, 'ip_use_nextline', 0)
@@ -41,5 +47,4 @@ endfunction
 
 " Make it available as command
 command! -nargs=0 EvalPython call EvalPython()
-
 
