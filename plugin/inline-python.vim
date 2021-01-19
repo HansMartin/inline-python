@@ -1,7 +1,7 @@
 " inline-python.vim
 
 " check python dependencies
-if !has('python')
+if !has('python3')
     echo 'Vim needs to be compiled with +python support'
     finish
 endif
@@ -29,7 +29,7 @@ let s:div_str = get(g:, 'ip_divider_str', '')
 " Python snippet to import the python script from the plugin dir
 " Credits: https://candidtim.github.io/vim/2017/08/11/write-vim-plugin-in-python.html
 
-python << EOF
+python3 << EOF
 import sys
 from os.path import normpath, join
 import vim
@@ -42,7 +42,7 @@ EOF
 
 " Global Vim Func.
 function! EvalPython()
-    python eval_current_line()
+    python3 eval_current_line()
 endfunction
 
 " Make it available as command
